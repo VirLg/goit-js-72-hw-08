@@ -1,4 +1,8 @@
-import Player from  '@vimeo/player'
+// const Player = require('@vimeo/player');
+
+
+// console.log(Player);
+
 // window.Player = Player;
 // var player = new Player('vimeo-player')
 
