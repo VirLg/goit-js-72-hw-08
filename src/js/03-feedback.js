@@ -35,8 +35,13 @@ refTextArea.textContent = Object.values(objectValueForm)
     refTextArea.textContent = valueForm.message
     refInput.value = valueForm.email
 
-}
+//     Object.entries(valueForm).forEach(([email, message]) =>
+//         valueForm.elements[email].value = message);
 
+
+// console.log(Object.entries(valueForm))
+
+}
 
 
 
