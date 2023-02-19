@@ -1,4 +1,8 @@
-// const Player = require('@vimeo/player');
+import player from '@vimeo/player';
+
+
+
+console.log(player);
 
 
 // console.log(Player);
@@ -34,3 +38,19 @@
 //         }
 //     });
 // }
+
+
+
+const iframe = document.querySelector('#vimeo-player');
+
+console.log(iframe);
+
+    // const player = new Vimeo.Player(iframe);
+
+    // player.on('play', function() {
+    //     console.log('played the video!');
+    // });
+
+    // player.getVideoTitle().then(function(title) {
+    //     console.log('title:', title);
+    // });
