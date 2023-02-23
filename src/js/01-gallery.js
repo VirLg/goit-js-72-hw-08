@@ -1,7 +1,13 @@
-// Описаний в документації
-import SimpleLightbox from "simplelightbox";
-// Додатковий імпорт стилів
+// Add imports above this line
+import { galleryItems } from './gallery-items';
+
 import "simplelightbox/dist/simple-lightbox.min.css";
+import SimpleLightbox from "simplelightbox/dist/simple-lightbox.esm";
+// Change code below this line
+
+console.log(galleryItems);
+console.log(SimpleLightbox);
+
 
 const refUl = document.querySelector('.gallery')
 // refUl.addEventListener('click', onCloseModalWindow)
@@ -44,3 +50,4 @@ let gallery = new SimpleLightbox('.gallery a',
 // gallery.on('error.simplelightbox', function (e) {
 // 	console.log(e); // Some usefull information
 // });
+
