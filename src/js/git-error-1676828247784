@@ -1,2 +1,0 @@
-> git -c user.useConfigOnly=true commit --quiet
-Скасування коміту через порожнє повідомлення коміту.
