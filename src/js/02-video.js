@@ -1,20 +1,36 @@
-// import Player from '@vimeo/player';
-// console.log(Player);
+import Player from '@vimeo/player';
 
-const iframe = document.querySelector('iframe');
+const iframeRef = document.querySelector('#vimeo-player');
 
-console.log(iframe);
-
-    // const player = new Vimeo.Player(iframe);
+const player = new Player(iframeRef);
 
 
 
-    // player.on('play', function() {
-    //     console.log('played the video!');
-    // });
+player.on('timeupdate', function(data) {
+    const { seconds } = data
+    return localStorage.setItem('timeNow', seconds)     
+});
 
-    // player.getVideoTitle().then(function(title) {
-    //     console.log('title:', title);
-    // });
 
-    // console.log(player);
+const nowPlay = localStorage.getItem("timeNow")
+
+
+
+player.setCurrentTime(nowPlay).then(function(seconds) {
+    // seconds = the actual time that the player seeked to
+}).catch(function(error) {
+    switch (error.name) {
+        case 'RangeError':
+            // the time was less than 0 or greater than the video’s duration
+            break;
+
+        default:
+            // some other error occurred
+            break;
+    }
+});
+    
+
+    // !!!!!!Зробив по паузі, тому  lodash.throttle не було сенсу включати. бо по "on" мене напрягло, що рахуе три рази на секунду((
+
+
