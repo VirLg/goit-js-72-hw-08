@@ -2,12 +2,14 @@ const refForm = document.querySelector('.feedback-form');
 const refTextArea = document.querySelector('textarea');
 const refInput = document.querySelector("input")
 const submitBTN = document.querySelector('button')
-const objectValueForm = {}
+let objectValueForm = {}
+
 
 refForm.addEventListener('submit', onFormSubmit);
 
-// console.log(refTextArea);
+
 initForm()
+
 function onFormSubmit(evt) {
     evt.preventDefault()
 
@@ -18,21 +20,26 @@ function onFormSubmit(evt) {
 
         const formData = new FormData(refForm)
 
-        formData.forEach((message, email) => console.log(message, email));
-    } else {alert("заповніть будь ласка всі поля форми") }
+        formData.forEach((message, email) => {
+           
+            objectValueForm[email] = message;
+            localStorage.setItem("feedback-form-state", JSON.stringify(objectValueForm))
+        });
+    } else {
+        alert("заповніть будь ласка всі поля форми")
+    }
 }
+// 
+let resp = localStorage.getItem("feedback-form-state")
+       response = JSON.parse(resp)
+objectValueForm = {...response}          
+console.log(objectValueForm);
 
-refForm.addEventListener('input', onChangeValueForm);
 
-function onChangeValueForm(evt){
-
-    objectValueForm[evt.target.name] = evt.target.value;
-
- return   localStorage.setItem("feedback-form-state", JSON.stringify(objectValueForm));
-}
 
 function initForm() {
-   let valueForm = localStorage.getItem("feedback-form-state")
+    let valueForm = localStorage.getItem("feedback-form-state")
+   
     if (!valueForm) { 
         return console.log("localStorage empty");
     }

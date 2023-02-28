@@ -12,25 +12,25 @@ console.log(SimpleLightbox);
 const refUl = document.querySelector('.gallery')
 // refUl.addEventListener('click', onCloseModalWindow)
 
-function createItem({original, preview, description}) { 
-        return `
+function createItem({ original, preview, description }) {
+    return `
     <a class="gallery__item"
         href="${original}" onclick="return false">
         <img class="gallery__image"
         src="${preview}" 
         alt="${description}" />
-    </a>         `      
+    </a>         `
 };
 
 
-const markupGallary= galleryItems.map(createItem).join('')
+const markupGallary = galleryItems.map(createItem).join('')
 
 refUl.insertAdjacentHTML("afterbegin", markupGallary)
 
 
 
 
-let gallery = new SimpleLightbox('.gallery a',
+const gallery = new SimpleLightbox('.gallery a',
     {
         navText: ['←', '→'],
         captionsData: 'alt',
@@ -38,7 +38,7 @@ let gallery = new SimpleLightbox('.gallery a',
         animationSlide: true,
         // swipeTolerance:50,
         // fadeSpeed:1200,
-        captionDelay:250,
+        captionDelay: 250,
     });
 
 
