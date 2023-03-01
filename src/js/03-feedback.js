@@ -1,10 +1,14 @@
+import  throttle  from 'lodash.throttle'
+
+
+
 const refForm = document.querySelector('.feedback-form');
 const refTextArea = document.querySelector('textarea');
 const refInput = document.querySelector("input")
 const submitBTN = document.querySelector('button')
-let objectValueForm = null;
-let responce = null;
-initForm()
+let objectValueForm = {} ;
+let responce = {};
+
 
 refForm.addEventListener('submit', onFormSubmit);
 
@@ -16,69 +20,46 @@ function onFormSubmit(evt) {
         if (message !== "" && email!==undefined) {
             objectValueForm[email] = message
             localStorage.setItem("feedback-form-state", JSON.stringify(objectValueForm))
-            responce = localStorage.getItem("feedback-form-state")
+            responce = localStorage.getItem("feedback-form-state") ?? {};
             responce = JSON.parse(responce)
             objectValueForm = { ...responce }
         } else {
             alert("заповніть будь ласка всі поля форми")
             
         }
-  
-    
-   
+       
     })
-    console.log(objectValueForm);
+   console.log(objectValueForm);
+ 
 }
 
-
-
-
-function initForm() {
-  let a = localStorage.getItem("feedback-form-state")
-    a = JSON.parse(a)
-    
-      if (!a) { 
-        return ;
-    }
-console.log(a);
-console.log(responce);
   
+if (!refTextArea.value && !refInput.value) {
 
+    let storage = localStorage.getItem("feedback-form-state")
+    storage = JSON.parse(storage) ?? {}
 
-  
-    
-refInput.value = objectValueForm.email??""
-    refTextArea.textContent = objectValueForm.message
-
+    Object.entries(storage).forEach(([email, value],idx,arr) => {
+        refTextArea.value = arr[1][idx];
+        refInput.value = arr[0][idx];    
+    })  
 }
-
-
-
-// function onFormSubmit(evt) {
-//     
-
-//     const validTextAteaVAlue = Boolean(refTextArea.value);
-//     const validInputValue = Boolean(refInput.value)
-//     //  
-    
-//     if ((evt.currentTarget === evt.target)=== validTextAteaVAlue && validInputValue) {
-
-//                   
-//     } else {
-
-//         
-//     }
-
    
-// }
-
-//
 
 
 
+refTextArea.addEventListener('input', throttle(() => { }, 500))
 
 
 
 
 
 
+// document.querySelector('input').addEventListener(
+//   'input',
+//   _.debounce(() => {
+//     console.log(
+//       'Input event handler invocation after 300ms of inactivity past burst.',
+//     );
+//   }, 300),
+// );
