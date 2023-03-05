@@ -8,23 +8,8 @@ let objectValueForm = {} ;
 let responce = {};
 
 
-refForm.addEventListener('submit', onFormSubmit);
 
-function onFormSubmit(evt) {
-    evt.preventDefault()
-
-    if (refInput.value !== "" && refTextArea.value !== "") {
-
-  
-    evt.currentTarget.reset()
-    localStorage.removeItem('feedback-form-state')
-    console.log(populateValue);
-    } else { 
-            alert("Заповніть поля форми")
-        }
-
-}
-refForm.addEventListener('input', throttle(handleValue, 500))
+// refForm.addEventListener('input', throttle(handleValue, 500))
 
 refForm.addEventListener("input", handleValue)
 
@@ -54,7 +39,24 @@ Object.entries(populateValue).forEach(([email, message], idx, arr) => {
 })
 
 
+refForm.addEventListener('submit', onFormSubmit);
 
+function onFormSubmit(evt) {
+    evt.preventDefault()
+
+    if (refInput.value !== "" && refTextArea.value !== "") {
+
+        console.log(populateValue); 
+        console.log(objectValueForm);
+
+    evt.currentTarget.reset()      
+    localStorage.removeItem('feedback-form-state')
+ 
+    } else { 
+            alert("Заповніть поля форми")
+        }
+
+}
 
 
 
